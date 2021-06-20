@@ -31,8 +31,27 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', function () {
+	return redirect()->to(base_url('auth'));
+});
+$routes->group('auth', ['namespace' => '\App\Controllers\Auth'], function ($routes) {
+	$routes->get('', 'Login::index');
+	$routes->get('login', 'Login::index');
+	$routes->get('logout', 'Logout::index');
+});
 
+$routes->group('admin', ['filter' => 'auth', 'namespace' => '\App\Controllers\Admin'], function ($routes) {
+	$routes->get('', 'Dashboard::index');
+	$routes->get('dashboard', 'Dashboard::index');
+	$routes->get('(:any)', 'Errors::show404');
+});
+
+$routes->group('api', ['namespace' => '\App\Controllers\Api'], function ($routes) {
+	$routes->group('auth', ['namespace' => '\App\Controllers\Api\Auth'], function ($routes) {
+		$routes->post('', 'Login::process');
+		$routes->post('login', 'Login::process');
+	});
+});
 /*
  * --------------------------------------------------------------------
  * Additional Routing

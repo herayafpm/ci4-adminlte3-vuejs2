@@ -98,11 +98,6 @@
             icon: 'error',
             title: res.data.message
           })
-        }
-      }).catch(err => {
-        var response = err.response
-        if (response.status === 400) {
-          // 400 (Client Error)
           var data = response.data.data
           if (data.username) {
             this.invalidUsername = true
@@ -112,6 +107,12 @@
             this.invalidPassword = true
             this.errorPassword = data.password
           }
+        }
+      }).catch(err => {
+        var response = err.response
+        if (response.status === 400) {
+          // 400 (Client Error)
+
         } else if (response.status === 500) {
           // 500 (Server Error)
           alert(response.data.message)

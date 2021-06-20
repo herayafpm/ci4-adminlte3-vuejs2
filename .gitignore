@@ -41,7 +41,7 @@ $RECYCLE.BIN/
 #-------------------------
 # These should never be under version control,
 # as it poses a security risk.
-.env
+!.env
 .vagrant
 Vagrantfile
 
@@ -83,7 +83,7 @@ phpunit
 #-------------------------
 # Composer
 #-------------------------
-vendor/
+/vendor/
 
 #-------------------------
 # IDE / Development Files
@@ -98,16 +98,6 @@ _modules/*
 # Jetbrains editors (PHPStorm, etc)
 .idea/
 *.iml
-
-# Netbeans
-nbproject/
-build/
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-nb-configuration.xml
-.nb-gradle/
 
 # Sublime Text
 *.tmlanguage.cache

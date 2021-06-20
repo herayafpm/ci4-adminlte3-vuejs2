@@ -153,7 +153,7 @@
     <!-- AdminLTE App -->
     <script src="<?= base_url('assets/vendor/adminlte') ?>/dist/js/adminlte.js"></script>
     <script src="<?= base_url('assets/vendor/adminlte') ?>/plugins/sweetalert2/sweetalert2.all.min.js"></script>
-    <script src="<?= base_url('assets/vendor/momentjs/moment-with-locales.js') ?>"></script>
+    <script src="<?= base_url('assets/vendor/adminlte/plugins/moment/moment-with-locales.js') ?>"></script>
     <script src="<?= base_url() ?>/assets/vendor/vuejs/vue.min.js"></script>
     <script src="<?= base_url() ?>/assets/vendor/axios/axios.min.js"></script>
 

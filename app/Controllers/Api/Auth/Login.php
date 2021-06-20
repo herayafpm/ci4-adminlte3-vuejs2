@@ -43,7 +43,7 @@ class Login extends ResourceController
         'password' => htmlspecialchars($dataPost['password']),
       ];
       if (!$validation->run($data)) {
-        return $this->respond(["status" => 0, "message" => "validasi error", "data" => $validation->getErrors()], 400);
+        return $this->respond(["status" => 0, "message" => "validasi error", "data" => $validation->getErrors()], 200);
       }
       $auth = $this->model->authenticate($data['username'], $data['password']);
       if ($auth) {

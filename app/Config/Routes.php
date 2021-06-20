@@ -42,6 +42,9 @@ $routes->group('auth', ['namespace' => '\App\Controllers\Auth'], function ($rout
 
 $routes->group('admin', ['filter' => 'auth', 'namespace' => '\App\Controllers\Admin'], function ($routes) {
 	$routes->get('', 'Dashboard::index');
+	$routes->group('', ['filter' => 'auth:1', 'namespace' => '\App\Controllers\Admin'], function ($routes) {
+		$routes->get('admin', 'Admin::index');
+	});
 	$routes->get('dashboard', 'Dashboard::index');
 	$routes->get('(:any)', 'Errors::show404');
 });
@@ -50,6 +53,16 @@ $routes->group('api', ['namespace' => '\App\Controllers\Api'], function ($routes
 	$routes->group('auth', ['namespace' => '\App\Controllers\Api\Auth'], function ($routes) {
 		$routes->post('', 'Login::process');
 		$routes->post('login', 'Login::process');
+	});
+	$routes->group('admin', ['filter' => 'auth_api', 'namespace' => '\App\Controllers\Api\Admin'], function ($routes) {
+		$routes->group('admin', ['filter' => 'auth_api:1', 'namespace' => '\App\Controllers\Api\Admin'], function ($routes) {
+			$routes->post('datatable', 'Admin::datatable_data');
+			$routes->post('create', 'Admin::create');
+			$routes->group('(:num)', function ($routes) {
+				$routes->post('update', 'Admin::update/$1');
+				$routes->post('delete', 'Admin::delete/$1');
+			});
+		});
 	});
 });
 /*
